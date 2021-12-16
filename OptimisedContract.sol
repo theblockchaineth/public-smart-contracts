@@ -126,7 +126,7 @@ contract optimisedContract is ERC721, Ownable {
         
         require(activeSaleStateInt > 0, "Minting Paused");
         require(msg.value >= (myContractStateData.mintPrice * uint(_number_to_mint)), "Under paid");
-        require(_number_to_mint <= myContractStateData.maxTokensPerTxn, "Being greedy");
+        require(((_number_to_mint <= myContractStateData.maxTokensPerTxn) && (_number_to_mint > 0)), "Being greedy or silly");
         require(nextMintId <= (myContractStateData.maxTokens - uint(_number_to_mint)) , "Not enough supply");
         
         if (activeSaleStateInt == 1){
